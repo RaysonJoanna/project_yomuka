@@ -11,39 +11,115 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
-    <title>美레시피</title>
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+
+    <title>요무까(자바)</title>
     <style>
-        * { 
+        *{ 
             margin:0; font-family: 'Noto Sans KR', sans-serif;
         }
+        #subscribe1{
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+        }
+
+        hr {
+            margin: 50px 0;
+        }
+
+        
     </style>
 </head>
 <body>
     <div class="d-flex justify-content-center mb-5">
-        <img src="img/yomuka.png" alt="mos" style="width:80%; max-width: 1600px;">
+        <img src="img/yomuka.png" alt="meRecipe" style="width:80%; max-width: 1600px;">
     </div>
-
-    <div class="p-4 justify-content-center" style="margin-top: 40px; text-align: center;">
-        <h1 class="mb-5">프로젝트 소개</h1>
-        <div class="pb-5">
+    <div class="p-4 justify-content-center " style="margin-top: 100px; text-align: center;">
+        <h1 class="mt-5 pt-5" style="border-top: 2px solid #FF8C8C;">프로젝트 소개</h1>
+        <div style="border-bottom: 2px solid #FF8C8C;" class="pb-3">
             <p class="mt-5 fs-5">기간 : 2023.05.16~05.19</p>
+            <p class="fs-5">목적 : 반려동물 토탈 케어를 위한 서비스</p>
             <p class="fs-5">개발툴 : 자바11</p>
+            <p class="fs-5">담당파트 : 반려동물 물품 정기구독</p>
             <p class="fs-5">개발 인원 : 4명</p>
-            <div class="mt-5">
-                <p class="fs-5">구현기능</p>
-                <p class="fs-5 mb-2" style="margin:0;">1. </p>
-                <p class="fs-5 mb-2" style="margin:0;">2. </p>
-
-            </div>
         </div>
-        <div class="mb-5" style="margin-top: 150px;">
-            <h1 class="mb-5">프로젝트 설계</h1>
-            <img src="img/yomuka_diagram.PNG" alt="mos_diagram">
+        <div class="mb-5 text-center" style="margin-top: 150px;">
+            <h1 class="mb-5">물품 정기구독 파트 설계</h1>
+            <img src="img/yomuka_diagram.PNG" alt="mos_diagram" class="mx-auto">
         </div>
         <div>
-            <p class="fs-3 mb-5 pt-5">구현기능</p>
-            <p class="fs-5 text-center" style="margin:0;">1. 재료 조회</p>
+            <p class="h1 mb-5 pt-5">구현기능</p>
+
+            <p class="h5 text-center mb-3" id="subscribe1" onClick="here(event)">정기구독<i class="fas fa-mouse-pointer" id="rclick" style="margin-left: 10px;"></i></p>
+            <div id="subscribe2" style="display: none;">
+                <div style="width:900px; margin: 0 auto;">
+                    <h5 class="mt-5 text-center" style="color:green">Yomuka_TotalPetCare.java</h5>
+                    <img src="img/r1.PNG" alt="r1" class="mt-5">
+                    <img src="img/r2.PNG" alt="r1" class="mt-5">
+                    <hr> 
+                    <h5 class="mt-5 text-center pt-5" style="color:green">Yomuka_TotalPetCare.java</h5>
+                    <img src="img/c1.PNG" alt="c1" class="mt-5">
+            
+                    <h5 class="mt-5 pt-5 text-center" style="color:green">Subscribe.java</h5>
+                    <img src="img/c2.PNG" alt="c2" class="mt-5">
+
+                    <h5 class="mt-5 pt-5 text-center" style="color:green">ProductList.java</h5>
+                    <img src="img/c3-1.PNG" alt="c3-1" class="mt-5">
+                    <img src="img/c3.PNG" alt="c3">
+
+                    <h5 class="mt-5 pt-5 text-center" style="color:green">Product.java</h5>
+                    <img src="img/c2-2.PNG" alt="c2-2" class="mt-5">
+
+                    <h5 class="mt-5 pt-5 text-center" style="color:green">ProductDog.java</h5>
+                    <img src="img/c2-0.PNG" alt="c2-0" class="mt-5">
+                    <img src="img/c2-1.PNG" alt="c2-1" class="mt-5">
+
+                    <h5 class="mt-5 pt-5 text-center" style="color:green">Define.java</h5>
+                    <img src="img/c3-2.PNG" alt="c3-2" class="mt-5">
+
+                    <hr>
+                    <h5 class="mt-5 pt-5 text-center" style="color:green">Subscribe.java</h5>
+                    <img src="img/c4.PNG" alt="c4" class="mt-5">
+                    <img src="img/c5.PNG" alt="c5" class="mt-5">
+                    <img src="img/c6.PNG" alt="c6" class="mt-5">
+                </div>
+                <button class="btn btn-lg btn-primary mb-5" id="subscribeclose" onClick="jeob(event)">접기</button>
+            </div>
+        </div>
+        <div>
+            <a href="https://github.com/RaysonJoanna/project_yomuka" class="d-flex justify-content-center mt-5"><img src="img/yomukaCod.png" alt="보러가기" style="width:40%; max-width: 800px;"></a>
         </div>
     </div>
+    <script>
+        function here(e) {
+            let id = e.target.id;
+            let div = $(`#${id}`).next()[0].id;
+            let pointer = $(`#${id}`).children().first()[0].id;
+
+            if($(`#${div}`).css('display') == 'none') {
+                $(`#${div}`).show();
+                $(`#${pointer}`).css("color","#c7c7c7");
+            } else {
+                $(`#${div}`).hide();
+                $(`#${pointer}`).css("color","#1E3050");
+            }
+        }
+
+        function jeob(e){
+            let self = e.target.id;
+            let mother = $(`#${self}`).parent()[0].id;
+            let aunt = $(`#${mother}`).prev()[0].id;
+            console.log(aunt);
+
+
+            $(`#${self}`).parent().css('display','none');
+            $(`#${aunt}`).children().css("color","#1E3050");
+        }
+    </script>
 </body>
 </html>
